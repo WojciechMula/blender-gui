@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>gui.Grid</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="gui-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="gui-module.html">Module&nbsp;gui</a> ::
+        Class&nbsp;Grid
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="gui.Grid-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Type Grid</h2>
+
+<pre class="base-tree">
+<a href="__builtin__.object-class.html"><code>object</code></a> --+    
+         |    
+ <a href="gui.Container-class.html"><code>Container</code></a> --+
+             |
+            <b>Grid</b>
+</pre><br />
+
+<hr/>
+
+<p>Grid geometry manager.</p>
+<p>This manager places widgets at grid of rectangular cells, widget can 
+span multiple adjacent cells. One cell may be occupied by one widget.</p>
+Example 1 (numeric keyboard):
+<pre class="literalblock">
+       # file: ex_Grid1.py
+       import Blender
+       import gui
+
+       interface = gui.Interface()
+       grid = gui.Grid(interface, 10, 10, 200, 250, 4, 5, padx=4, pady=4)
+
+       grid.add( gui.Button(interface, 'num'), 0, 0)
+       grid.add( gui.Button(interface, '/'), 1, 0)
+       grid.add( gui.Button(interface, '*'), 2, 0)
+       grid.add( gui.Button(interface, '-'), 3, 0)
+
+       grid.add( gui.Button(interface, '7'), 0, 1)
+       grid.add( gui.Button(interface, '8'), 1, 1)
+       grid.add( gui.Button(interface, '9'), 2, 1)
+       grid.add( gui.Button(interface, '+'), 3, 1, rowspan=2)
+
+       grid.add( gui.Button(interface, '4'), 0, 2)
+       grid.add( gui.Button(interface, '5'), 1, 2)
+       grid.add( gui.Button(interface, '6'), 2, 2)
+
+       grid.add( gui.Button(interface, '1'), 0, 3)
+       grid.add( gui.Button(interface, '2'), 1, 3)
+       grid.add( gui.Button(interface, '3'), 2, 3)
+       grid.add( gui.Button(interface, 'Ret'), 3, 3, rowspan=2)
+
+       grid.add( gui.Button(interface, '0'), 0, 4, colspan=2)
+       grid.add( gui.Button(interface, '.'), 2, 4)
+
+       interface.register_container(grid)
+       interface.run()
+       # eof
+
+       <img src="../img/ex_Grid1.png" alt="">
+</pre>
+Example 2:
+<pre class="literalblock">
+       # file: ex_Grid2.py
+       import Blender
+       import gui
+
+       interface = gui.Interface()
+
+       grid = gui.Grid(interface, 10, 10, 300, 300, [0.1, 0.2, '*'], [0.1,'*',0.1,0.3])
+       for row in xrange(4):
+               for col in xrange(3):
+                       grid.add( gui.Button(interface, &quot;(%d,%d)&quot; % (col,row) ), col, row)
+
+       interface.register_container(grid)
+       interface.run()
+       # eof
+
+       <img src="../img/ex_Grid2.png" alt="">
+</pre>
+Example 3:
+<pre class="literalblock">
+       # file: ex_Grid3.py
+       import Blender
+       import gui
+
+       interface = gui.Interface()
+
+       grid = gui.Grid(interface, 10, 10, 200, 200, [0.2,'*',0.2], [0.2,'*',0.2])
+
+       grid.add( gui.Button(interface, 'A'), 0, 0, colspan=2)
+       grid.add( gui.Button(interface, 'B'), 0, 1, rowspan=2)
+       grid.add( gui.Button(interface, 'C'), 1, 2, colspan=2)
+       grid.add( gui.Button(interface, 'D'), 2, 0, rowspan=2)
+
+       grid.add( gui.Button(interface, 'X'), 1, 1)
+
+       interface.register_container(grid)
+       interface.run()
+       # eof
+
+       <img src="../img/ex_Grid3.png" alt="">
+</pre>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Grid-class.html#__init__" class="summary-sig-name"><code>__init__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>interface</span>,
+          <span class=summary-sig-arg>left</span>,
+          <span class=summary-sig-arg>bottom</span>,
+          <span class=summary-sig-arg>width</span>,
+          <span class=summary-sig-arg>height</span>,
+          <span class=summary-sig-arg>cols</span>,
+          <span class=summary-sig-arg>rows</span>,
+          <span class=summary-sig-arg>padx</span>,
+          <span class=summary-sig-arg>pady</span>)</span></code>
+<br />
+Define layout of grid.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Grid-class.html#add" class="summary-sig-name"><code>add</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>widget</span>,
+          <span class=summary-sig-arg>col</span>,
+          <span class=summary-sig-arg>row</span>,
+          <span class=summary-sig-arg>colspan</span>,
+          <span class=summary-sig-arg>rowspan</span>)</span></code>
+<br />
+Place <code>widget</code> on the grid.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Grid-class.html#draw" class="summary-sig-name"><code>draw</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Draw container and it's content (if container is visible).</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Grid-class.html#set_geometry" class="summary-sig-name"><code>set_geometry</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>left</span>,
+          <span class=summary-sig-arg>bottom</span>,
+          <span class=summary-sig-arg>width</span>,
+          <span class=summary-sig-arg>height</span>)</span></code>
+<br />
+Set new dimensions and position of container.</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from Container</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Container-class.html#get_geometry" class="summary-sig-name"><code>get_geometry</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns container's geometry.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Container-class.html#show" class="summary-sig-name"><code>show</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>state</span>)</span></code>
+<br />
+Show/hide container and it's children.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="gui.Container-class.html#visible" class="summary-sig-name"><code>visible</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns visibility of container.</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from object</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__delattr__" class="summary-sig-name"><code>__delattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__delattr__('name') &lt;==&gt; del x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__getattribute__" class="summary-sig-name"><code>__getattribute__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__getattribute__('name') &lt;==&gt; x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__hash__" class="summary-sig-name"><code>__hash__</code></a>(<span class=summary-sig-arg>x</span>)</span></code>
+<br />
+x.__hash__() &lt;==&gt; hash(x)</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__new__" class="summary-sig-name"><code>__new__</code></a>(<span class=summary-sig-arg>T</span>,
+          <span class=summary-sig-arg>S</span>,
+          <span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+T.__new__(S, ...) -&gt; a new object with type S, a subtype of T</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce__" class="summary-sig-name"><code>__reduce__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce_ex__" class="summary-sig-name"><code>__reduce_ex__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__repr__" class="summary-sig-name"><code>__repr__</code></a>(<span class=summary-sig-arg>x</span>)</span></code>
+<br />
+x.__repr__() &lt;==&gt; repr(x)</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__setattr__" class="summary-sig-name"><code>__setattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__setattr__('name', value) &lt;==&gt; x.name = value</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__str__" class="summary-sig-name"><code>__str__</code></a>(<span class=summary-sig-arg>x</span>)</span></code>
+<br />
+x.__str__() &lt;==&gt; str(x)</td></tr>
+</table><br />
+
+
+<!-- =========== START OF METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Method Details</th></tr>
+</table>
+
+<a name="__init__"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">__init__</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>interface</span>,
+          <span class=sig-arg>left</span>,
+          <span class=sig-arg>bottom</span>,
+          <span class=sig-arg>width</span>,
+          <span class=sig-arg>height</span>,
+          <span class=sig-arg>cols</span>,
+          <span class=sig-arg>rows</span>,
+          <span class=sig-arg>padx</span>=<span class=sig-default>5</span>,
+          <span class=sig-arg>pady</span>=<span class=sig-default>5</span>)</span>
+    <br /><i>(Constructor)</i>
+  </h3>
+  Define layout of grid.
+  <dl><dt></dt><dd>
+    <dl><dt><b>Parameters:</b></dt>
+      <dd><code><b>interface</b></code>
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=<a href="gui.Interface-class.html" 
+              class="link"><code>Interface</code></a>)</i>
+      <dd><code><b>left</b></code> -
+         x coordinate of left lower corner of grid
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>bottom</b></code> -
+         x coordinate of left lower corner of grid
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>width</b></code> -
+         width of container
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=(unsigned) integer)</i>
+      <dd><code><b>height</b></code> -
+         height of container
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=(unsigned )integer)</i>
+      <dd><code><b>cols</b></code> -
+         columns description
+        <ol start="1">
+          <li>
+            If type of <code>cols</code> is integer, then grid has 
+            <code>cols</code> columns and width of all columns is just 
+            the same.
+          </li>
+          <li>
+            If type of <code>cols</code> is list, then grid has 
+            <code>len(cols)</code> columns. Each element of the list 
+            defines width of a column; type of the element could be float 
+            or string:
+            <ul>
+              <li>
+                <p><b>float</b> - value must lie in range 0..1 and width 
+                is calculated as 
+                <code><i>float</i>*container_width</code>.</p>
+                Sum of all float values <b>must be</b> less or equal 
+                then 1.0.
+              </li>
+              <li>
+                <b>string</b> - only string &quot;*&quot; is accepted 
+                and means &quot;any value&quot;. Width of all columns 
+                marked by asterisk is same and is calculated as:
+<pre class="literalblock">
+     width = (1.0 - sum(float_values))/number_of_asterisks
+</pre>
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer or list of floats/'*')</i>
+      <dd><code><b>rows</b></code> -
+         rows description; see description for <code>cols</code> 
+        parameter
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer or list of floats)</i>
+      <dd><code><b>padx</b></code> -
+         x padding (margin left, margin right) of cell in pixels
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>pady</b></code> -
+         y padding (margin top, margin bottom) of cell in pixels
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      </dd>
+    </dl>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="gui.Container-class.html#__init__"><code>gui.Container.__init__</code></a></dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+
+<a name="add"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">add</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>widget</span>,
+          <span class=sig-arg>col</span>,
+          <span class=sig-arg>row</span>,
+          <span class=sig-arg>colspan</span>=<span class=sig-default>1</span>,
+          <span class=sig-arg>rowspan</span>=<span class=sig-default>1</span>)</span>
+  </h3>
+  Place <code>widget</code> on the grid.
+  <ul>
+    <li>
+      <code>col</code> &amp; <code>row</code> - cell number; cell 
+      (0,0) is placed at upper-left corner of grid
+    </li>
+    <li>
+      <code>colspan</code> &amp; <code>rowspan</code> - width and 
+      height in cells (default 1x1)
+    </li>
+  </ul>
+  ValueError is raised if:
+  <ul>
+    <li>
+      coordinates/dimensions points out of the grid,
+    </li>
+    <li>
+      one or more cell are already occupied by other widget.
+    </li>
+  </ul>
+  <dl><dt></dt><dd>
+    <dl><dt><b>Parameters:</b></dt>
+      <dd><code><b>col</b></code> -
+         starting column
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>row</b></code> -
+         starting row
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>colspan</b></code> -
+         number of columns occupied by widget
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      <dd><code><b>rowspan</b></code> -
+         number of rows occupied by widget
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=integer)</i>
+      </dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+
+<a name="draw"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">draw</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Draw container and it's content (if container is visible).
+  <dl><dt></dt><dd>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="gui.Container-class.html#draw"><code>gui.Container.draw</code></a> <i>(inherited documentation)</i>
+</dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+
+<a name="set_geometry"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">set_geometry</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>left</span>,
+          <span class=sig-arg>bottom</span>,
+          <span class=sig-arg>width</span>,
+          <span class=sig-arg>height</span>)</span>
+  </h3>
+  Set new dimensions and position of container. If certain argument is 
+  <code>None</code> then container parameter remains unchanged:
+<pre class="literalblock">
+       c = gui.Container(interface, 10, 10, 300, 300)
+
+       # set new position
+       c.set_geometry(x,y, None, None)
+
+       # change width
+       c.set_geometry(None, None, new_width, None)
+</pre>
+  Function returns four booleans, where True value means that 
+  parameter has changed:
+<pre class="literalblock">
+       c = gui.Container(interface, 10, 10, 300, 300)
+       left,bottom,width,height = c.get_geometry()
+
+       # change bottom and width
+       diff    = c.set_geometry(left, bottom+5, width-1, height)
+
+       print diff # -&gt; (False, True, True, False)
+</pre>
+  Subclasses <b>must keep</b> behaviour of this method, so it is a 
+  good practice to call <code>Container.set_geometry</code> at the 
+  begining of overriding method:
+<pre class="literalblock">
+       class Other(Container):
+               # ...
+
+               def set_geometry(self, left, bottom, width, height):
+                       diff = Container.set_geometry(self, left, bottom, width, height)
+
+                       if diff[3]: # width has changed:
+                               # recalculate width of children
+
+                       return diff
+</pre>
+  <dl><dt></dt><dd>
+    <dl><dt><b>Parameters:</b></dt>
+      <dd><code><b>left</b></code> -
+         x coordinate of left lower corner
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=int or None)</i>
+      <dd><code><b>bottom</b></code> -
+         y coordinate of left lower corner
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=int or None)</i>
+      <dd><code><b>width</b></code> -
+         width of container
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=(unsigned) int or None)</i>
+      <dd><code><b>height</b></code> -
+         height of container
+        <br /><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (type=(unsigned) int or None)</i>
+      </dd>
+    </dl>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="gui.Container-class.html#set_geometry"><code>gui.Container.set_geometry</code></a> <i>(inherited documentation)</i>
+</dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="gui-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Mon Jul 18 19:50:45 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

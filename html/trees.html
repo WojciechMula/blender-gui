@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module and Class Hierarchies</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="gui-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th bgcolor="#70b0f0" class="navselect">&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="trees.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF MODULE HIERARCHY =========== -->
+<h2>Module Hierarchy</h2>
+<ul>
+<li> <b><a href="gui-module.html"><code>gui</code></a></b>: <i>GUI manager for Blender.</i>
+</ul>
+
+<!-- =========== START OF CLASS HIERARCHY =========== -->
+<h2>Class Hierarchy</h2>
+<ul>
+  <li> <b><a href="__builtin__.object-class.html"><code>__builtin__.object</code></a></b>: <i>
+The most base type</i>
+    <ul>
+  <li> <b><a href="gui.Container-class.html"><code>gui.Container</code></a></b>: <i>
+Geometry manager (base, abstract class).</i>
+    <ul>
+  <li> <b><a href="gui.Grid-class.html"><code>gui.Grid</code></a></b>: <i>
+Grid geometry manager.</i>
+  <li> <b><a href="gui.Panels-class.html"><code>gui.Panels</code></a></b>: <i>
+Container manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass)</i>
+  <li> <b><a href="gui.Rows-class.html"><code>gui.Rows</code></a></b>: <i>
+Row geometry manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass).</i>
+  <li> <b><a href="gui.SingleWidget-class.html"><code>gui.SingleWidget</code></a></b>: <i>
+Single widget geometry manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass).</i>
+  <li> <b><a href="gui.Tabs-class.html"><code>gui.Tabs</code></a></b>: <i>
+Container manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass)</i>
+    </ul>
+  <li> <b><a href="gui.Interface-class.html"><code>gui.Interface</code></a></b>: <i>
+GUI manager.</i>
+  <li> <b><a href="__builtin__.type-class.html"><code>__builtin__.type</code></a></b>: <i>
+type(object) -&gt; the object's type type(name, bases, dict) -&gt; a 
+new type</i>
+  <li> <b><a href="gui.Widget-class.html"><code>gui.Widget</code></a></b>: <i>
+Widget (base, abstract class)</i>
+    <ul>
+  <li> <b><a href="gui.Button-class.html"><code>gui.Button</code></a></b>: <i>
+Push Button (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</i>
+  <li> <b><a href="gui.LargeText-class.html"><code>gui.LargeText</code></a></b>: <i>
+Display block of text (L{Widget} subclass).</i>
+  <li> <b><a href="gui.MultipleSelect-class.html"><code>gui.MultipleSelect</code></a></b>: <i>
+Multiple select (abstract class, <a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</i>
+    <ul>
+  <li> <b><a href="gui.Menu-class.html"><code>gui.Menu</code></a></b>: <i>
+Menu (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass)</i>
+  <li> <b><a href="gui.MultipleToggle-class.html"><code>gui.MultipleToggle</code></a></b>: <i>
+Multiple toggle (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass).</i>
+  <li> <b><a href="gui.RadioButtons-class.html"><code>gui.RadioButtons</code></a></b>: <i>
+Radio buttons (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass).</i>
+    </ul>
+  <li> <b><a href="gui.Number-class.html"><code>gui.Number</code></a></b>: <i>
+Number input base, abstract class (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</i>
+    <ul>
+  <li> <b><a href="gui.FloatNumber-class.html"><code>gui.FloatNumber</code></a></b>: <i>
+Floating-point number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</i>
+  <li> <b><a href="gui.FloatSlider-class.html"><code>gui.FloatSlider</code></a></b>: <i>
+Floating-point number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass)</i>
+  <li> <b><a href="gui.IntNumber-class.html"><code>gui.IntNumber</code></a></b>: <i>
+Integer number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</i>
+  <li> <b><a href="gui.IntSlider-class.html"><code>gui.IntSlider</code></a></b>: <i>
+Integer number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</i>
+    </ul>
+  <li> <b><a href="gui.String-class.html"><code>gui.String</code></a></b>: <i>
+String input (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</i>
+  <li> <b><a href="gui.Text-class.html"><code>gui.Text</code></a></b>: <i>
+Static text (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</i>
+  <li> <b><a href="gui.Toggle-class.html"><code>gui.Toggle</code></a></b>: <i>
+Toggle Button (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> sublcass).</i>
+    </ul>
+    </ul>
+</ul>
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="gui-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Mon Jul 18 19:50:46 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

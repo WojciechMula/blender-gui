@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>gui</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th bgcolor="#70b0f0" class="navselect">&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        Module&nbsp;gui
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="gui-module.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF MODULE DESCRIPTION =========== -->
+<h2 class="module">Module gui</h2>
+
+<p>GUI manager for Blender.</p>
+$Revision: 1.1.1.1 $
+<h1 class="heading">Introduction</h1>
+  <p>The built-in module <code>Blender.Draw</code> gives access to basic 
+  GUI elements like buttons, sliders etc, it also manages user input. But 
+  programming interface is function-orientated and thus slightly 
+  primitive. Programmer have to write a lot of code, mostly redundant; 
+  the code is large, entangled, hard to read, extend, and maintain.</p>
+  <p>I've decided to write an object orientated programming interface, 
+  that works at higher level of abstraction and makes almost all common 
+  actions. It is easy to use and understand, even for 
+  non-programmers.</p>
+  I hope that module will be useful for Blender users.
+<h1 class="heading">Installation</h1>
+  Since gui is an external module, you have to tell python the path 
+  where <code>gui.py</code> is placed. There are three ways to do 
+  this:
+  <ol start="1">
+    <li>
+      Add the path to the environment variable PYTHONPATH.
+    </li>
+    <li>
+      Copy the file (or do symlink) to any directory listed in 
+      existing PYTHONPATH.
+    </li>
+    <li>
+      Add the path inside a script:
+<pre class="literalblock">
+       import sys
+       sys.path.append('path')
+
+       import gui
+       # ...
+</pre>
+    </li>
+  </ol>
+<h1 class="heading">Basic concepts</h1>
+  This section introduces basic concepts used in this 
+  documentation.
+  <h2 class="heading"><a href="gui.Interface-class.html" class="link"><code>Interface</code></a></h2>
+    <p>Interface is a main object that manages events, widgets and 
+    containers. You have to create a <b>single</b> object of the type <a 
+    href="gui.Interface-class.html" 
+    class="link"><code>Interface</code></a>.</p>
+    Example:
+<pre class="literalblock">
+       import Blender
+       import gui
+       interface = gui.Interface('name-of-script') # script name is optional
+
+       # create widgets and containers
+       # bind events
+
+       # register containers managed by interface
+       interface.register_container( top-level container(s) )
+
+       # run graphical interface
+       interface.run()
+</pre>
+  <h2 class="heading">Events &amp; Callbacks</h2>
+    <p>Events are signals emitted by Blender as reaction for user action 
+    such as pressing a key, pressing mouse button, moving mouse, etc. 
+    Programmer can catch the signal and do adequate action. Method <a 
+    href="gui.Interface-class.html#bind" 
+    class="link"><code>Interface.bind</code></a> registers a function, 
+    that is called on particular event(s).</p>
+    <p>Currently there is a one default binding: pressing Q key causes 
+    exit.</p>
+    Widgets could also emit events, but in this case the only way to 
+    bind user function with widget event is to supply 
+    <code>callback</code> argument on construction a widget. Callback 
+    function must fit certain conditions layed on by the widget.
+  <h2 class="heading">Containers</h2>
+    Containers may grouping widget or other containers. At the moment 
+    there are two kinds of containers:
+    <ol start="1">
+      <li>
+        Widget manager, that calculates size &amp; position of 
+        children widgets:
+        <ul>
+          <li>
+            <a href="gui.SingleWidget-class.html" 
+            class="link"><code>SingleWidget</code></a>
+          </li>
+          <li>
+            <a href="gui.Rows-class.html" 
+            class="link"><code>Rows</code></a>
+          </li>
+          <li>
+            <a href="gui.Grid-class.html" 
+            class="link"><code>Grid</code></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Container manager, that manages size and position of children 
+        containers:
+        <ul>
+          <li>
+            <a href="gui.Tabs-class.html" 
+            class="link"><code>Tabs</code></a>
+          </li>
+          <li>
+            <a href="gui.Panels-class.html" 
+            class="link"><code>Panels</code></a>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  <h2 class="heading">Widget</h2>
+    <p>Widgets are a low-level part of GUI, widgets are for example 
+    buttons, switches, sliders etc. User may bulid his own widgets if it 
+    is neccesary.</p>
+    Several widgets are defined:
+    <ul>
+      <li>
+        <a href="gui.Button-class.html" 
+        class="link"><code>Button</code></a> (push button)
+      </li>
+      <li>
+        <a href="gui.Toggle-class.html" 
+        class="link"><code>Toggle</code></a> (switch)
+      </li>
+      <li>
+        <a href="gui.RadioButtons-class.html" 
+        class="link"><code>RadioButtons</code></a> (multi-switch)
+      </li>
+      <li>
+        <a href="gui.Menu-class.html" 
+        class="link"><code>Menu</code></a> (pulldown menu)
+      </li>
+      <li>
+        <a href="gui.MultipleToggle-class.html" 
+        class="link"><code>MultipleToggle</code></a> (mutli-switch)
+      </li>
+      <li>
+        <a href="gui.IntNumber-class.html" 
+        class="link"><code>IntNumber</code></a>, <a 
+        href="gui.FloatNumber-class.html" 
+        class="link"><code>FloatNumber</code></a> (number input)
+      </li>
+      <li>
+        <a href="gui.IntSlider-class.html" 
+        class="link"><code>IntSlider</code></a>, <a 
+        href="gui.FloatSlider-class.html" 
+        class="link"><code>FloatSlider</code></a> (number input)
+      </li>
+      <li>
+        <a href="gui.String-class.html" 
+        class="link"><code>String</code></a> (text input)
+      </li>
+      <li>
+        <a href="gui.Text-class.html" 
+        class="link"><code>Text</code></a> (single line of static 
+        text)
+      </li>
+      <li>
+        <a href="gui.LargeText-class.html" 
+        class="link"><code>LargeText</code></a> (block of static 
+        text)
+      </li>
+    </ul>
+<h1 class="heading">Examples</h1>
+  There are some examples in the documentation. Examples can be simply 
+  extracted from the source file (<code>gui.py</code>) with following 
+  utility:
+<pre class="literalblock">
+       #file: extract_examples.py
+       import os
+
+       start_sig = &quot;# file:&quot;
+       end_sig   = &quot;# eof&quot;
+
+       file = None
+       for line in open('gui.py'):
+               if file == None:
+                       idx = line.find(start_sig)
+                       if idx &gt; 0:
+                               filename        = line[idx+len(start_sig):].strip()
+                               indent          = len(line) - len(line.lstrip())
+                               file            = open(filename, 'w')
+                               print filename
+               else:
+                       idx = line.find(end_sig)
+                       if idx &gt; 0:
+                               file.close()
+                               file = None
+                       else:
+                               file.write(line[indent:].rstrip()+os.linesep)
+
+       # vim: ts=4 sw=4
+       # eof
+</pre>
+<h1 class="heading">License</h1>
+  GNU GPL
+<h1 class="heading">Documentation</h1>
+  HTML documentation is done with <a 
+  href="http://epydoc.sf.net">epydoc</a>, images were added with my own 
+  script.
+<h1 class="heading">Author</h1>
+  <p>Wojciech Mula &lt;wojciech_mula&#64;poczta.onet.pl&gt;</p>
+  Any comments, suggestions and critique are welcome.
+<hr/>
+
+<!-- =========== START OF CLASSES =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Classes</th></tr>
+<tr><td width="15%">
+  <b><a href="gui.Button-class.html"><code>Button</code></a></b></td>
+  <td>Push Button (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Container-class.html"><code>Container</code></a></b></td>
+  <td>Geometry manager (base, abstract class).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.FloatNumber-class.html"><code>FloatNumber</code></a></b></td>
+  <td>Floating-point number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.FloatSlider-class.html"><code>FloatSlider</code></a></b></td>
+  <td>Floating-point number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass)</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Grid-class.html"><code>Grid</code></a></b></td>
+  <td>Grid geometry manager.</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Interface-class.html"><code>Interface</code></a></b></td>
+  <td>GUI manager.</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.IntNumber-class.html"><code>IntNumber</code></a></b></td>
+  <td>Integer number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.IntSlider-class.html"><code>IntSlider</code></a></b></td>
+  <td>Integer number input (<a href="gui.Number-class.html" 
+class="link"><code>Number</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.LargeText-class.html"><code>LargeText</code></a></b></td>
+  <td>Display block of text (L{Widget} subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Menu-class.html"><code>Menu</code></a></b></td>
+  <td>Menu (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass)</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.MultipleSelect-class.html"><code>MultipleSelect</code></a></b></td>
+  <td>Multiple select (abstract class, <a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.MultipleToggle-class.html"><code>MultipleToggle</code></a></b></td>
+  <td>Multiple toggle (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Number-class.html"><code>Number</code></a></b></td>
+  <td>Number input base, abstract class (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Panels-class.html"><code>Panels</code></a></b></td>
+  <td>Container manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass)</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.RadioButtons-class.html"><code>RadioButtons</code></a></b></td>
+  <td>Radio buttons (<a href="gui.MultipleSelect-class.html" 
+class="link"><code>MultipleSelect</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Rows-class.html"><code>Rows</code></a></b></td>
+  <td>Row geometry manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.SingleWidget-class.html"><code>SingleWidget</code></a></b></td>
+  <td>Single widget geometry manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.String-class.html"><code>String</code></a></b></td>
+  <td>String input (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Tabs-class.html"><code>Tabs</code></a></b></td>
+  <td>Container manager (<a href="gui.Container-class.html" 
+class="link"><code>Container</code></a> subclass)</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Text-class.html"><code>Text</code></a></b></td>
+  <td>Static text (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> subclass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Toggle-class.html"><code>Toggle</code></a></b></td>
+  <td>Toggle Button (<a href="gui.Widget-class.html" 
+class="link"><code>Widget</code></a> sublcass).</td></tr>
+<tr><td width="15%">
+  <b><a href="gui.Widget-class.html"><code>Widget</code></a></b></td>
+  <td>Widget (base, abstract class)</td></tr>
+</table><br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th bgcolor="#70b0f0" class="navselect">&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Mon Jul 18 19:50:44 2005</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>
