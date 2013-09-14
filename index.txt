@@ -2,6 +2,9 @@
                       Blender GUI
 ========================================================================
 
+Last update: 2006-10-11
+
+
 Introduction
 ------------------------------------------------------------------------
 
@@ -27,7 +30,7 @@ Downloads
 * `gui.py <gui.py>`_ --- main program
 * `extract_examples.py <extract_examples.py>`_ --- utility
   to extract samples from ``gui.py``
-* `html.tar.bz2 <html.tar.bz2>`_ --- documentation done with
+* `html.tar.gz <html.tar.gz>`_ --- documentation done with
   Epydoc_
 * `epydoc_img.py <epydoc_img.py>`_ --- simple utility that
   adds images to epydoc output
