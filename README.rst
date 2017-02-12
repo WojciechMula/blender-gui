@@ -2,7 +2,7 @@
                       Blender GUI
 ========================================================================
 
-Last update: 2006-10-11
+Last update: 2006-10-11 (the module is not maintained any longer)
 
 
 Introduction
@@ -18,22 +18,21 @@ to read, extend, and maintain.
 
 I've decided to write an object orientated programming
 interface, that works at higher level of abstraction and
-makes almost all common actions.  it is easy to use and
+makes almost all common actions.  It is easy to use and
 understand, even for non-programmers.
 
 I hope that module will be useful for Blender_ users.
 
 
-Downloads
+Contents
 ------------------------------------------------------------------------
 
 * `gui.py <gui.py>`_ --- main program
 * `extract_examples.py <extract_examples.py>`_ --- utility
   to extract samples from ``gui.py``
-* `html.tar.gz <html.tar.gz>`_ --- documentation done with
-  Epydoc_
 * `epydoc_img.py <epydoc_img.py>`_ --- simple utility that
   adds images to epydoc output
+* documentation of the module in html format
 
 
 Sample extensions that use ``blender-gui``
@@ -81,15 +80,6 @@ Twist mesh
 * .. image:: plugins/mesh_twist.png
 
 
-Author
-------------------------------------------------------------------------
-
-Wojciech Muła, wojciech_mula@poczta.onet.pl
-
-
 .. _Blender: http://www.blender.org
 .. _Epydoc:  http://epydoc.sourceforge.net
 
-
-..
-	vim: tw=60 ts=4 sw=4
